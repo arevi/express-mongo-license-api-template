@@ -1,0 +1,18 @@
+import { connect } from "mongoose";
+
+const connectionURI: string =
+  process.env.mongoURI ||
+  "mongodb+srv://user:password@cluster0.ygrki.mongodb.net/keyDB?retryWrites=true&w=majority";
+
+export const connectDatabase = async () => {
+  try {
+    connect(connectionURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+    console.log(`[✅] Database connected`);
+  } catch (err) {
+    console.log(`[❌] Database error: ${err}`);
+  }
+};
